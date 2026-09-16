@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200">
+  <defs>
+    <linearGradient id="tgbg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1d8db8"/>
+      <stop offset="100%" style="stop-color:#2AABEE"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1200" fill="url(#tgbg)"/>
+  <g transform="translate(450,600) scale(14)">
+    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.012 9.483c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.26 14.4l-2.95-.924c-.642-.203-.654-.642.136-.953l11.527-4.445c.537-.194 1.006.131.59.17z" fill="#ffffff"/>
+  </g>
+</svg>

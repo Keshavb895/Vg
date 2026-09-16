@@ -1,0 +1,594 @@
+/* ==========================================================================
+   ABOUT ME SECTION - EDITORIAL REFERENCE SHOWCASE
+   Clean, contemporary editorial layout with expressive typography,
+   inline graphic capsules, and textured sketch portrait card.
+   ========================================================================== */
+
+.about-section {
+  position: relative;
+  background-color: #fdf6ee;
+  color: #0f172a;
+  padding: 13.5rem 1.5rem 13.5rem;
+  scroll-margin-top: 70px;
+  z-index: 5; /* Lower than hero (z-index: 20) so Hero overlaps About */
+  margin-top: -4rem; /* Slides underneath the hero's extended rounded bottom */
+  overflow: hidden;
+  contain: paint;
+  isolation: isolate;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Subtle background textures */
+.about-ambient-glow {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(500px, 90vw);
+  max-width: 100%;
+  height: min(500px, 90vw);
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, rgba(59, 130, 246, 0.02) 50%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about-dot-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 85%);
+}
+
+.about-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Two-Column Main Content Grid
+   -------------------------------------------------------------------------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.18fr 0.82fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   Left Column: Typography & Content
+   -------------------------------------------------------------------------- */
+.about-left-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-pill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 1rem 0.4rem 0.45rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1.75rem;
+  width: fit-content;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.pill-icon-circle {
+  width: 28px;
+  height: 28px;
+  background: #2563eb;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+}
+
+/* Massive Expressive Headline */
+.about-hero-headline {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: clamp(2.7rem, 5.2vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.14;
+  letter-spacing: -0.03em;
+  color: #090d16;
+  margin-bottom: 1.8rem;
+  text-wrap: balance;
+}
+
+/* ── "goals" accent: warm golden script (Dancing Script) ─────────────── */
+.accent-goals {
+  font-family: 'Dancing Script', cursive, sans-serif;
+  font-weight: 700;
+  font-size: 1.35em;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  background: linear-gradient(135deg, #f59e0b 0%, #f97316 60%, #ef4444 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  transform: translateY(4px) rotate(-1.5deg);
+  padding: 0 0.2rem;
+  filter: drop-shadow(0 2px 12px rgba(249, 115, 22, 0.35));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.about-hero-headline:hover .accent-goals {
+  transform: translateY(2px) rotate(-0.5deg) scale(1.04);
+  filter: drop-shadow(0 4px 18px rgba(249, 115, 22, 0.55));
+}
+
+/* ── "crypto" accent: electric cyan Caveat ────────────────────────────── */
+.accent-crypto {
+  font-family: 'Caveat', cursive, sans-serif;
+  font-weight: 700;
+  font-size: 1.38em;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  background: linear-gradient(135deg, #f59e0b 0%, #f97316 60%, #ef4444 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  transform: translateY(4px);
+  padding: 0 0.2rem;
+  filter: drop-shadow(0 2px 14px rgba(249, 115, 22, 0.35));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.about-hero-headline:hover .accent-crypto {
+  transform: translateY(2px) scale(1.04);
+  filter: drop-shadow(0 4px 20px rgba(249, 115, 22, 0.55));
+}
+
+/* --------------------------------------------------------------------------
+   Inline Graphic Capsules
+   -------------------------------------------------------------------------- */
+.inline-capsule {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  border-radius: 9999px;
+  padding: 0.22em 0.55em;
+  margin: 0 0.22em;
+  font-size: 0.42em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  user-select: none;
+  position: relative;
+  top: -0.1em;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.inline-capsule:hover {
+  transform: translateY(-2px) scale(1.06);
+}
+
+/* Capsule 1: Dark Obsidian Crypto Capsule */
+.capsule-dark {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  color: #f8fafc;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25), inset 0 1px rgba(255, 255, 255, 0.2);
+  gap: 0.45rem;
+}
+
+.capsule-dark:hover {
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4), inset 0 1px rgba(255, 255, 255, 0.4);
+}
+
+.capsule-glow-dot {
+  width: 7px;
+  height: 7px;
+  background: #38bdf8;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+.capsule-icon {
+  flex-shrink: 0;
+}
+
+/* Capsule 2: Electric Cyan / Blue Gradient Capsule */
+.capsule-blue {
+  background: linear-gradient(135deg, #2563eb 0%, #0284c7 100%);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35), inset 0 1px rgba(255, 255, 255, 0.3);
+  gap: 0.4rem;
+  padding: 0.22em 0.6em;
+}
+
+.capsule-blue:hover {
+  box-shadow: 0 6px 22px rgba(2, 132, 199, 0.5), inset 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.capsule-trend-up {
+  color: #86efac;
+  font-size: 0.85em;
+  font-weight: 800;
+}
+
+/* Bio Description */
+.about-bio-description {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: #475569;
+  max-width: 580px;
+  margin-bottom: 2.2rem;
+}
+
+/* Credibility Metrics Strip (placed on top of Explore Services) */
+.about-stats-strip {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  max-width: 520px;
+  margin-bottom: 2.2rem;
+}
+
+/* Action Buttons Row */
+.about-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  margin-bottom: 0;
+  flex-wrap: wrap;
+}
+
+.about-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.65rem 0.65rem 1.4rem;
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 60%, #fb923c 100%);
+  color: #7c2d12;
+  border-radius: 9999px;
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(251, 146, 60, 0.28);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+  cursor: pointer;
+}
+
+.about-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(251, 146, 60, 0.42);
+  filter: brightness(1.04);
+}
+
+.btn-arrow-circle {
+  width: 34px;
+  height: 34px;
+  background: rgba(124, 45, 18, 0.12);
+  color: #7c2d12;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, background 0.2s ease;
+}
+
+.about-btn-primary:hover .btn-arrow-circle {
+  transform: translateX(3px);
+  background: rgba(124, 45, 18, 0.2);
+}
+
+.about-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.about-stat-number {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.about-stat-label {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.about-stat-divider {
+  width: 1px;
+  height: 36px;
+  background: #e2e8f0;
+}
+
+/* --------------------------------------------------------------------------
+   Right Column: Editorial Portrait Card
+   -------------------------------------------------------------------------- */
+.about-right-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.about-portrait-card-wrapper {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.about-portrait-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 36px;
+  padding: 1rem;
+  box-shadow: 
+    0 25px 60px -15px rgba(15, 23, 42, 0.14),
+    0 0 0 1px rgba(15, 23, 42, 0.06);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  overflow: hidden;
+  user-select: none;
+}
+
+.about-portrait-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 
+    0 35px 70px -15px rgba(37, 99, 235, 0.18),
+    0 0 0 1.5px rgba(37, 99, 235, 0.35);
+}
+
+.portrait-img-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #f1f5f9;
+}
+
+.portrait-sketch-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: contrast(1.05) brightness(0.98);
+}
+
+.about-portrait-card:hover .portrait-sketch-image {
+  transform: scale(1.035);
+}
+
+/* Subtle texture vignette overlay */
+.portrait-texture-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 40%, transparent 60%, rgba(15, 23, 42, 0.12) 100%);
+  border-radius: 28px;
+}
+
+/* Floating Status Pill in card corner */
+.card-floating-badge {
+  position: absolute;
+  top: 1.85rem;
+  left: 1.85rem;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.badge-pulse-dot {
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+}
+
+/* Monogram 'vg' Watermark in top right */
+.portrait-monogram-tag {
+  position: absolute;
+  top: 1.6rem;
+  right: 1.85rem;
+  z-index: 5;
+  font-family: 'Caveat', cursive, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  line-height: 1;
+}
+
+/* Caption underneath the card */
+.portrait-caption-box {
+  margin-top: 1.35rem;
+  text-align: left;
+  padding: 0 0.5rem;
+}
+
+.caption-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.portrait-author-name {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #090d16;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.verified-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portrait-author-title {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #64748b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.title-spacer {
+  display: inline-block;
+  width: 2.4rem;
+  height: 1px;
+  background: linear-gradient(90deg, #f97316, #ef4444);
+  border-radius: 2px;
+  margin: 0 0.55rem;
+  vertical-align: middle;
+  opacity: 0.7;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .about-section {
+    margin-top: -3rem;
+    padding: 10.5rem 1.5rem 10.5rem;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .about-left-col {
+    order: 1;
+    text-align: left;
+  }
+
+  .about-right-col {
+    order: 2;
+  }
+
+  .about-portrait-card-wrapper {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    margin-top: -2.5rem;
+    padding: 8.5rem 1.25rem 8.5rem;
+  }
+
+  .about-hero-headline {
+    font-size: clamp(2.1rem, 7.5vw, 2.9rem);
+    margin-bottom: 1.4rem;
+  }
+
+  .about-bio-description {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .about-actions-row {
+    gap: 0.85rem;
+  }
+
+  .about-btn-primary, .about-btn-secondary {
+    font-size: 0.82rem;
+  }
+
+  .about-stats-strip {
+    gap: 1.25rem;
+  }
+
+  .about-stat-number {
+    font-size: 1.35rem;
+  }
+
+  .about-portrait-card {
+    border-radius: 28px;
+    padding: 0.75rem;
+  }
+
+  .portrait-img-container {
+    border-radius: 22px;
+  }
+
+  .portrait-author-name {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-stats-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .about-stat-divider {
+    display: none;
+  }
+
+  .about-actions-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .about-btn-primary,
+  .about-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
