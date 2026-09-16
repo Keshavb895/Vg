@@ -23,8 +23,21 @@ function SplashCursor({
   const canvasRef = useRef(null);
   const animationFrameId = useRef(null);
   const [visible, setVisible] = useState(!sectionRef); // if no sectionRef, always visible
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768 || window.matchMedia('(max-width: 768px)').matches;
+  });
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768 || window.matchMedia('(max-width: 768px)').matches);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -748,11 +761,11 @@ function SplashCursor({
       window.removeEventListener('touchend', handleTouchEnd);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isMobile]);
 
   // IntersectionObserver: show canvas only when the target section is in view
   useEffect(() => {
-    if (!sectionRef) return;
+    if (!sectionRef || isMobile) return;
     const observer = new IntersectionObserver(
       ([entry]) => setVisible(entry.isIntersecting),
       { threshold: 0 }
@@ -760,10 +773,13 @@ function SplashCursor({
     const el = sectionRef.current;
     if (el) observer.observe(el);
     return () => observer.disconnect();
-  }, [sectionRef]);
+  }, [sectionRef, isMobile]);
+
+  if (isMobile) return null;
 
   return (
     <div
+      className="splash-cursor-container"
       style={{
         position: 'fixed',
         inset: 0,

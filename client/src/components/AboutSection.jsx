@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import vaibhavSketchPortrait from '../assets/vaibhav-sketch-portrait.jpg';
 import TiltedCard from './TiltedCard';
 import './AboutSection.css';
 
 export function AboutSection() {
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768;
+  });
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const scrollToServices = (e) => {
     e.preventDefault();
     const servicesEl = document.getElementById('services');
@@ -71,22 +82,34 @@ export function AboutSection() {
             </div>
           </div>
 
-          {/* Right Column: Tilted 3D Portrait Card */}
+          {/* Right Column: Portrait Card (Tilted 3D on desktop, clean static on mobile) */}
           <div className="about-right-col scroll-reveal-3d">
             <div className="about-portrait-card-wrapper">
-              <TiltedCard
-                imageSrc={vaibhavSketchPortrait}
-                altText="Vaibhav Gupta - Web3 & P2P Specialist"
-                captionText="Vaibhav Gupta · P2P & Crypto Mentor"
-                containerWidth="100%"
-                containerHeight="420px"
-                imageWidth="100%"
-                imageHeight="420px"
-                rotateAmplitude={12}
-                scaleOnHover={1.05}
-                showMobileWarning={false}
-                showTooltip
-              />
+              {isMobile ? (
+                /* Non-Tilted Clean Static Photo Card for Mobile */
+                <div className="about-mobile-portrait-card">
+                  <img
+                    src={vaibhavSketchPortrait}
+                    alt="Vaibhav Gupta - Web3 & P2P Specialist"
+                    className="about-mobile-portrait-img"
+                  />
+                </div>
+              ) : (
+                /* 3D Tilted Card for Desktop */
+                <TiltedCard
+                  imageSrc={vaibhavSketchPortrait}
+                  altText="Vaibhav Gupta - Web3 & P2P Specialist"
+                  captionText="Vaibhav Gupta · P2P & Crypto Mentor"
+                  containerWidth="100%"
+                  containerHeight="420px"
+                  imageWidth="100%"
+                  imageHeight="420px"
+                  rotateAmplitude={12}
+                  scaleOnHover={1.05}
+                  showMobileWarning={false}
+                  showTooltip
+                />
+              )}
 
               {/* Author Caption Plate Below Card */}
               <div className="portrait-caption-box">

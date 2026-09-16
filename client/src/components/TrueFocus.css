@@ -77,6 +77,17 @@
   border-top: none;
 }
 
+@media (max-width: 768px) {
+  .focus-word {
+    filter: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  .focus-frame {
+    display: none !important;
+  }
+}
+
 @media (max-width: 520px) {
   .focus-container {
     gap: 0.4em;

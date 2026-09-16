@@ -18,9 +18,19 @@ const TrueFocus = ({
   const containerRef = useRef(null);
   const wordRefs = useRef([]);
   const [focusRect, setFocusRect] = useState({ x: 0, y: 0, width: 0, height: 0 });
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768;
+  });
 
   useEffect(() => {
-    if (!manualMode) {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!manualMode && !isMobile) {
       const interval = setInterval(
         () => {
           setCurrentIndex(prev => (prev + 1) % words.length);
@@ -30,10 +40,10 @@ const TrueFocus = ({
 
       return () => clearInterval(interval);
     }
-  }, [manualMode, animationDuration, pauseBetweenAnimations, words.length]);
+  }, [manualMode, isMobile, animationDuration, pauseBetweenAnimations, words.length]);
 
   useEffect(() => {
-    if (currentIndex === null || currentIndex === -1) return;
+    if (isMobile || currentIndex === null || currentIndex === -1) return;
 
     if (!wordRefs.current[currentIndex] || !containerRef.current) return;
 
@@ -46,17 +56,17 @@ const TrueFocus = ({
       width: activeRect.width,
       height: activeRect.height
     });
-  }, [currentIndex, words.length]);
+  }, [currentIndex, isMobile, words.length]);
 
   const handleMouseEnter = index => {
-    if (manualMode) {
+    if (!isMobile && manualMode) {
       setLastActiveIndex(index);
       setCurrentIndex(index);
     }
   };
 
   const handleMouseLeave = () => {
-    if (manualMode) {
+    if (!isMobile && manualMode) {
       setCurrentIndex(lastActiveIndex);
     }
   };
@@ -73,16 +83,18 @@ const TrueFocus = ({
             }}
             className={`focus-word ${manualMode ? 'manual' : ''} ${isActive && !manualMode ? 'active' : ''}`}
             style={{
-              filter: manualMode
-                ? isActive
-                  ? `blur(0px)`
-                  : `blur(${blurAmount}px)`
-                : isActive
-                  ? `blur(0px)`
-                  : `blur(${blurAmount}px)`,
+              filter: isMobile
+                ? 'none'
+                : manualMode
+                  ? isActive
+                    ? `blur(0px)`
+                    : `blur(${blurAmount}px)`
+                  : isActive
+                    ? `blur(0px)`
+                    : `blur(${blurAmount}px)`,
               '--border-color': borderColor,
               '--glow-color': glowColor,
-              transition: `filter ${animationDuration}s ease`
+              transition: isMobile ? 'none' : `filter ${animationDuration}s ease`
             }}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
@@ -92,28 +104,30 @@ const TrueFocus = ({
         );
       })}
 
-      <motion.div
-        className="focus-frame"
-        animate={{
-          x: focusRect.x,
-          y: focusRect.y,
-          width: focusRect.width,
-          height: focusRect.height,
-          opacity: currentIndex >= 0 ? 1 : 0
-        }}
-        transition={{
-          duration: animationDuration
-        }}
-        style={{
-          '--border-color': borderColor,
-          '--glow-color': glowColor
-        }}
-      >
-        <span className="corner top-left"></span>
-        <span className="corner top-right"></span>
-        <span className="corner bottom-left"></span>
-        <span className="corner bottom-right"></span>
-      </motion.div>
+      {!isMobile && (
+        <motion.div
+          className="focus-frame"
+          animate={{
+            x: focusRect.x,
+            y: focusRect.y,
+            width: focusRect.width,
+            height: focusRect.height,
+            opacity: currentIndex >= 0 ? 1 : 0
+          }}
+          transition={{
+            duration: animationDuration
+          }}
+          style={{
+            '--border-color': borderColor,
+            '--glow-color': glowColor
+          }}
+        >
+          <span className="corner top-left"></span>
+          <span className="corner top-right"></span>
+          <span className="corner bottom-left"></span>
+          <span className="corner bottom-right"></span>
+        </motion.div>
+      )}
     </div>
   );
 };

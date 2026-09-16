@@ -144,11 +144,12 @@
 }
 
 html {
-  /* Delegate frame-by-frame silky interpolation exclusively to Lenis */
-  scroll-behavior: auto !important;
+  /* Silky smooth scrolling */
+  scroll-behavior: smooth;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Butter-Smooth Lenis Inertial Scrolling */
@@ -192,6 +193,7 @@ body {
   line-height: 1.6;
   letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
 }
 
 #root,
@@ -4573,5 +4575,13 @@ main {
   .ghost-hud-bottom {
     position: static;
     margin: 0.75rem;
+  }
+
+  .splash-cursor-container,
+  #splash-fluid-canvas {
+    display: none !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
   }
 }

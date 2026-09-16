@@ -20,13 +20,16 @@ export function App() {
   // Initialize Ultra-Smooth Inertial Scroll & Section Scroll Lightening
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.25,
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
+      syncTouch: true,
+      syncTouchLerp: 0.08,
+      touchInertiaExponent: 1.6,
       wheelMultiplier: 1.1,
-      touchMultiplier: 1.8,
+      touchMultiplier: 1.5,
       infinite: false,
     });
 
