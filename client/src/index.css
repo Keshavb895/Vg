@@ -173,6 +173,25 @@ input::selection, textarea::selection {
   color: inherit;
 }
 
+/* Deactivate all buttons — purely visual UI showcase */
+button:not(.reactbits-mobile-toggle),
+.btn-rb-primary,
+.btn-rb-secondary,
+.about-btn-primary,
+.about-btn-secondary,
+.service-card-btn,
+.reactbits-btn-signup,
+.reactbits-mobile-cta,
+.hero-rb-badge,
+.mobile-link-card,
+.scroll-top-mini-btn,
+.hud-action-btn,
+.contact-modal-submit,
+.btn-primary {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
 html {
   /* Silky smooth scrolling */
   scroll-behavior: smooth;

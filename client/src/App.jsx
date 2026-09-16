@@ -14,6 +14,22 @@ import SplashCursor from './components/SplashCursor';
 export function App() {
   const [contactModalOpen, setContactModalOpen] = useState(false);
 
+  // Deactivate all button and action clicks — purely visual UI showcase
+  useEffect(() => {
+    const handleGlobalClick = (e) => {
+      const btn = e.target.closest(
+        'button:not(.reactbits-mobile-toggle), .btn-rb-primary, .btn-rb-secondary, .about-btn-primary, .about-btn-secondary, .service-card-btn, .reactbits-btn-signup, .reactbits-mobile-cta, .hero-rb-badge, .mobile-link-card, .scroll-top-mini-btn, .hud-action-btn'
+      );
+      if (btn) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+
+    document.addEventListener('click', handleGlobalClick, true);
+    return () => document.removeEventListener('click', handleGlobalClick, true);
+  }, []);
+
   // Initialize kinetic 3D scroll reveal physics
   useScrollReveal(true);
 
